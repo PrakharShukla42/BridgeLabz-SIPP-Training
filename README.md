@@ -70,7 +70,3 @@ Focuses on **fundamental Java programming concepts** to build a strong foundatio
 
 Each branch supports:
 - 📘 Strong theoretical understanding
-- 💻 Hands-on coding practice
-- 🔁 OOP mastery with design patterns
-- ⚡ Optimized solutions using DSA
-- 🏗️ Industry-ready project structure
