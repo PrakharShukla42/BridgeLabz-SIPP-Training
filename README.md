@@ -57,7 +57,7 @@ Focuses on **fundamental Java programming concepts** to build a strong foundatio
 
 ---
 
-### 3. `core-java`
+### 2. `core-java`
 
 | Day     | Description                                                        | Link                                                                             |
 |---------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
