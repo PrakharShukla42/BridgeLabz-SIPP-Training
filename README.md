@@ -53,7 +53,7 @@ Focuses on **fundamental Java programming concepts** to build a strong foundatio
 
 | Section | Description                               | Link                               |
 |---------|--------------------------------------------|------------------------------------|
-| —       | Repository overview and setup instructions | [main](https://github.com/sakshi26tangar/BridgeLabz-SIPP-Training/tree/main) |
+| —       | Repository overview and setup instructions | [main](https://github.com/PrakharShukla42/BridgeLabz-SIPP-Training/blob/main/README.md) |
 
 ---
 
