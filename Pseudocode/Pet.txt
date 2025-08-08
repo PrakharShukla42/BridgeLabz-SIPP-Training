@@ -1,0 +1,29 @@
+Class Pet:
+    Attributes:
+        name
+        age
+    Constructor(name, age):
+        Set this.name = name
+        Set this.age = age
+
+Class Dog inherits Pet:
+    Additional Attribute:
+        breed
+    Constructor(name, age, breed):
+        Call Pet constructor with name, age
+        Set this.breed = breed
+
+Class Cat inherits Pet:
+    Additional Attribute:
+        color
+    Constructor(name, age, color):
+        Call Pet constructor with name, age
+        Set this.color = color
+
+Class Bird inherits Pet:
+    Additional Attribute:
+        canFly (boolean)
+    Constructor(name, age, canFly):
+        Call Pet constructor with name, age
+        Set this.canFly = canFly
+
