@@ -1,0 +1,23 @@
+Class Member:
+    Attributes:
+        name
+        id
+        membershipDate
+    Constructor(name, id, membershipDate):
+        Set this.name = name
+        Set this.id = id
+        Set this.membershipDate = membershipDate
+
+    Method isMembershipValid(currentDate):
+        expiryDate = membershipDate + 1 year
+
+        If currentDate <= expiryDate:
+            Return True
+        Else:
+            Return False
+
+    Method checkUserId(inputId):
+        If inputId == id:
+            Return True
+        Else:
+            Return False
