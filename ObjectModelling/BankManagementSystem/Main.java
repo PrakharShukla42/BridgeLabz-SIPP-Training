@@ -10,5 +10,7 @@ public class Main {
 
         customer1.viewBalance(account1);
         bank1.getBankDetails();
+
+        account1.printAccountDetails();
     }
 }
