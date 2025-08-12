@@ -1,0 +1,29 @@
+START
+CLASS Customer
+    ATTRIBUTES: name, address, phone
+    METHOD getDetails()
+
+CLASS Restaurant
+    ATTRIBUTES: name, location, menu
+    METHOD getMenu()
+
+CLASS DeliveryBoy
+    ATTRIBUTES: name, id, phone
+    METHOD getDetails()
+
+CLASS Order
+    ATTRIBUTES: customer (Customer), restaurant (Restaurant), deliveryBoy (DeliveryBoy), items, totalPrice
+    METHOD placeOrder()
+    METHOD showOrderDetails()
+
+MAIN
+    CREATE customer = new Customer(name, address, phone)
+    CREATE restaurant = new Restaurant(name, location, menu)
+    CREATE deliveryBoy = new DeliveryBoy(name, id, phone)
+
+    CREATE order = new Order(customer, restaurant, deliveryBoy, items, totalPrice)
+
+    CALL order.placeOrder()
+    CALL order.showOrderDetails()
+
+END
