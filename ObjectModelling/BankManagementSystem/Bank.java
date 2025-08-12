@@ -25,4 +25,8 @@ public class Bank {
             System.out.println("- " + c.getName());
         }
     }
+
+    public String getBankName() {
+        return bankName;
+    }
 }
