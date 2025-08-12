@@ -28,4 +28,11 @@ public class Account {
             System.out.println("Insufficient funds");
         }
     }
+
+    // New method that uses bank field
+    public void printAccountDetails() {
+        System.out.println("Bank: " + bank.getBankName());
+        System.out.println("Customer: " + customer.getName());
+        System.out.println("Balance: " + balance);
+    }
 }
