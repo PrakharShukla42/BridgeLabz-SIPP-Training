@@ -69,6 +69,14 @@ Focuses on **fundamental Java programming concepts** to build a strong foundatio
 
 
 ---
+---
+### 3. `OOPS`
+
+| Day     | Description                                                        | Link                                                                             |
+|---------|--------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Day 01  | Abstract Class  | [Day-01 Abstract Class](https://github.com/PrakharShukla42/BridgeLabz-SIPP-Training/tree/oops/AbstractClass) |
+
+---
 
 ## 🧠 Learning Outcomes
 
