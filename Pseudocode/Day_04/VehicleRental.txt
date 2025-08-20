@@ -1,0 +1,55 @@
+INTERFACE Rentable
+    METHOD rent(days : int) : double
+END INTERFACE
+
+ABSTRACT CLASS Vehicle IMPLEMENTS Rentable
+    ATTRIBUTES:
+        vehicleId : int
+        brand : String
+        basePricePerDay : double
+
+    CONSTRUCTOR(vehicleId, brand, basePricePerDay)
+        this.vehicleId = vehicleId
+        this.brand = brand
+        this.basePricePerDay = basePricePerDay
+
+    ABSTRACT METHOD rent(days : int) : double
+END CLASS
+
+
+CLASS Car EXTENDS Vehicle
+    CONSTRUCTOR(vehicleId, brand, basePricePerDay)
+        CALL super(vehicleId, brand, basePricePerDay)
+
+    OVERRIDE METHOD rent(days : int) : double
+        RETURN days * basePricePerDay
+END CLASS
+
+
+CLASS Bike EXTENDS Vehicle
+    CONSTRUCTOR(vehicleId, brand, basePricePerDay)
+        CALL super(vehicleId, brand, basePricePerDay)
+
+    OVERRIDE METHOD rent(days : int) : double
+        RETURN days * basePricePerDay * 0.8
+END CLASS
+
+
+CLASS VehicleFactory
+    METHOD getVehicle(type : String, id : int, brand : String, price : double) : Vehicle
+        IF type == "Car" THEN
+            RETURN NEW Car(id, brand, price)
+        ELSE IF type == "Bike" THEN
+            RETURN NEW Bike(id, brand, price)
+        ELSE
+            RETURN NULL
+END CLASS
+
+
+START
+    factory = NEW VehicleFactory()
+    v1 = factory.getVehicle("Car", 1, "Toyota", 2000)
+    v2 = factory.getVehicle("Bike", 2, "Yamaha", 1000)
+    PRINT v1.rent(5)
+    PRINT v2.rent(3)
+END

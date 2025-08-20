@@ -1,0 +1,61 @@
+CLASS Account
+    ATTRIBUTES:
+        accountNumber : int
+        accountHolder : String
+        balance : double
+
+    CONSTRUCTOR(accountNumber, accountHolder, balance)
+        this.accountNumber = accountNumber
+        this.accountHolder = accountHolder
+        this.balance = balance
+
+    METHOD deposit(amount : double)
+        balance = balance + amount
+        PRINT "Deposited", amount, "New Balance:", balance
+
+    METHOD withdraw(amount : double)
+        PRINT "Default withdrawal"
+
+    METHOD getBalance()
+        RETURN balance
+END CLASS
+
+
+CLASS SavingAccount EXTENDS Account
+    ATTRIBUTES:
+        withdrawalLimit : double = 10000
+
+    CONSTRUCTOR(accountNumber, accountHolder, balance)
+        CALL super(accountNumber, accountHolder, balance)
+
+    OVERRIDE METHOD withdraw(amount : double)
+        IF amount <= withdrawalLimit AND amount <= balance THEN
+            balance = balance - amount
+            PRINT "Withdrawal successful. Remaining balance:", balance
+        ELSE
+            PRINT "Withdrawal denied"
+END CLASS
+
+
+CLASS CurrentAccount EXTENDS Account
+    ATTRIBUTES:
+        overdraftLimit : double = 5000
+
+    CONSTRUCTOR(accountNumber, accountHolder, balance)
+        CALL super(accountNumber, accountHolder, balance)
+
+    OVERRIDE METHOD withdraw(amount : double)
+        IF amount <= (balance + overdraftLimit) THEN
+            balance = balance - amount
+            PRINT "Withdrawal successful. Remaining balance:", balance
+        ELSE
+            PRINT "Withdrawal denied"
+END CLASS
+
+//Main Class
+START
+    acc1 = NEW SavingAccount(101, "Prakhar", 20000)
+    acc2 = NEW CurrentAccount(102, "Sakshi", 10000)
+    acc1.withdraw(5000)
+    acc2.withdraw(12000)
+END
