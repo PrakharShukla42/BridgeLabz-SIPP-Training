@@ -1,0 +1,61 @@
+CLASS Flight
+    ATTRIBUTES:
+        flightNo : String
+        price : int
+        duration : int
+
+    CONSTRUCTOR(flightNo, price, duration)
+        this.flightNo = flightNo
+        this.price = price
+        this.duration = duration
+END CLASS
+
+
+FUNCTION compareFlights(f1 : Flight, f2 : Flight) : int
+    IF f1.price < f2.price THEN
+        RETURN -1
+    ELSE IF f1.price > f2.price THEN
+        RETURN 1
+    ELSE
+        IF f1.duration < f2.duration THEN
+            RETURN -1
+        ELSE IF f1.duration > f2.duration THEN
+            RETURN 1
+        ELSE
+            RETURN 0
+END FUNCTION
+
+
+FUNCTION mergeSort(flights : List of Flight)
+    IF size(flights) <= 1 THEN
+        RETURN flights
+    mid = size(flights) / 2
+    left = mergeSort(flights[0...mid-1])
+    right = mergeSort(flights[mid...end])
+    RETURN merge(left, right)
+END FUNCTION
+
+
+FUNCTION merge(left, right) : List of Flight
+    result = EMPTY LIST
+    i = 0, j = 0
+    WHILE i < size(left) AND j < size(right)
+        IF compareFlights(left[i], right[j]) <= 0 THEN
+            ADD left[i] TO result
+            i++
+        ELSE
+            ADD right[j] TO result
+            j++
+    ADD remaining elements of left/right to result
+    RETURN result
+END FUNCTION
+
+
+START
+    flights = [ Flight("AI101", 5000, 180),
+                Flight("SJ202", 4000, 200),
+                Flight("IN303", 5000, 150) ]
+    sortedFlights = mergeSort(flights)
+    FOR f IN sortedFlights
+        PRINT f.flightNo, f.price, f.duration
+END

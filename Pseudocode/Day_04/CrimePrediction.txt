@@ -1,0 +1,48 @@
+CLASS Graph
+    ATTRIBUTES:
+        adjacencyList : Map<Zone, List<Zone>>
+        crimeData : Map<Zone, int>
+
+    CONSTRUCTOR()
+        adjacencyList = EMPTY MAP
+        crimeData = EMPTY MAP
+
+    METHOD addZone(zone)
+        adjacencyList[zone] = EMPTY LIST
+        crimeData[zone] = 0
+
+    METHOD addRoad(zone1, zone2)
+        adjacencyList[zone1].ADD(zone2)
+        adjacencyList[zone2].ADD(zone1)
+
+    METHOD setCrime(zone, value)
+        crimeData[zone] = value
+END CLASS
+
+
+FUNCTION DFS(graph, startZone, visited, riskThreshold, riskyZones)
+    MARK startZone as visited
+    IF graph.crimeData[startZone] >= riskThreshold THEN
+        ADD startZone TO riskyZones
+    FOR neighbor IN graph.adjacencyList[startZone]
+        IF neighbor NOT IN visited THEN
+            DFS(graph, neighbor, visited, riskThreshold, riskyZones)
+END FUNCTION
+
+
+START
+    g = NEW Graph()
+    g.addZone("A"); g.addZone("B"); g.addZone("C"); g.addZone("D")
+    g.addRoad("A", "B")
+    g.addRoad("B", "C")
+    g.addRoad("C", "D")
+    g.setCrime("A", 3)
+    g.setCrime("B", 8)
+    g.setCrime("C", 12)
+    g.setCrime("D", 5)
+    visited = EMPTY SET
+    riskyZones = EMPTY LIST
+    riskThreshold = 7
+    DFS(g, "A", visited, riskThreshold, riskyZones)
+    PRINT "High-risk zones:", riskyZones
+END
