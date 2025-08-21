@@ -1,0 +1,42 @@
+ABSTRACT CLASS Crop
+    ATTRIBUTES:
+        name
+        growthPeriod
+
+    CONSTRUCTOR(name, growthPeriod)
+        this.name = name
+        this.growthPeriod = growthPeriod
+
+    ABSTRACT METHOD waterRequirement()
+    ABSTRACT METHOD harvest()
+
+CLASS Rice EXTENDS Crop
+    CONSTRUCTOR(name, growthPeriod)
+        CALL super(name, growthPeriod)
+
+    METHOD waterRequirement()
+        PRINT name + " needs high water supply (e.g., 1200mm)."
+
+    METHOD harvest()
+        PRINT "Harvesting " + name + " after " + growthPeriod + " days."
+
+CLASS Wheat EXTENDS Crop
+    CONSTRUCTOR(name, growthPeriod)
+        CALL super(name, growthPeriod)
+
+    METHOD waterRequirement()
+        PRINT name + " needs moderate water supply (e.g., 450mm)."
+
+    METHOD harvest()
+        PRINT "Harvesting " + name + " after " + growthPeriod + " days."
+
+CLASS SmartFarmingMain
+    METHOD main()
+        crop1 = Rice("Rice", 120)
+        crop2 = Wheat("Wheat", 100)
+
+        crop1.waterRequirement()
+        crop1.harvest()
+
+        crop2.waterRequirement()
+        crop2.harvest()

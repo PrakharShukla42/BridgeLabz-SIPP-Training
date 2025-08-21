@@ -1,0 +1,33 @@
+ENUM TrafficLight
+    RED
+    YELLOW
+    GREEN
+
+CLASS TrafficSignal
+    ATTRIBUTES:
+        currentLight
+        timeInterval   // in seconds
+
+    CONSTRUCTOR(startLight, timeInterval)
+        this.currentLight = startLight
+        this.timeInterval = timeInterval
+
+    METHOD switchLight()
+        IF currentLight == RED
+            currentLight = GREEN
+        ELSE IF currentLight == GREEN
+            currentLight = YELLOW
+        ELSE IF currentLight == YELLOW
+            currentLight = RED
+
+    METHOD displayLight()
+        PRINT "Current Light: " + currentLight
+
+CLASS TrafficSimulationMain
+    METHOD main()
+        signal = TrafficSignal(RED, 5)
+        
+        LOOP i FROM 1 TO 6
+            signal.displayLight()
+            WAIT signal.timeInterval
+            signal.switchLight()
