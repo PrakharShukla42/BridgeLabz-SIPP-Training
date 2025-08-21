@@ -1,0 +1,41 @@
+CLASS Job
+    ATTRIBUTES:
+        jobId
+        deadline
+        processingTime
+
+    CONSTRUCTOR(jobId, deadline, processingTime)
+        this.jobId = jobId
+        this.deadline = deadline
+        this.processingTime = processingTime
+
+CLASS JobScheduler
+    ATTRIBUTES:
+        priorityQueue   // min-heap or priority queue
+
+    CONSTRUCTOR()
+        this.priorityQueue = EMPTY PRIORITY QUEUE
+
+    METHOD addJob(job)
+        priorityQueue.INSERT(job, PRIORITY = job.deadline + job.processingTime)
+
+    METHOD scheduleJobs()
+        WHILE priorityQueue IS NOT EMPTY
+            job = priorityQueue.REMOVE_MIN()
+            PRINT "Processing Job: " + job.jobId + 
+                  " (Deadline: " + job.deadline + 
+                  ", Time: " + job.processingTime + ")"
+
+CLASS JobSchedulerMain
+    METHOD main()
+        scheduler = JobScheduler()
+
+        job1 = Job("J1", 5, 2)
+        job2 = Job("J2", 2, 1)
+        job3 = Job("J3", 7, 3)
+
+        scheduler.addJob(job1)
+        scheduler.addJob(job2)
+        scheduler.addJob(job3)
+
+        scheduler.scheduleJobs()

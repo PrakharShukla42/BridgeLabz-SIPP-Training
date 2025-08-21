@@ -1,0 +1,56 @@
+CLASS MazeSolver
+    ATTRIBUTES:
+        maze      // 2D grid: 0 = path, 1 = wall
+        visited   // 2D boolean grid
+        rows
+        cols
+
+    CONSTRUCTOR(maze)
+        this.maze = maze
+        this.rows = maze.ROW_COUNT
+        this.cols = maze.COL_COUNT
+        this.visited = 2D ARRAY[rows][cols] INIT false
+
+    METHOD solveMaze(startRow, startCol, endRow, endCol)
+        IF isSafe(startRow, startCol) == FALSE
+            RETURN FALSE
+
+        IF (startRow == endRow AND startCol == endCol)
+            PRINT "Reached destination at (" + endRow + "," + endCol + ")"
+            RETURN TRUE
+
+        visited[startRow][startCol] = TRUE
+
+        // Try moving in 4 directions: UP, DOWN, LEFT, RIGHT
+        IF solveMaze(startRow+1, startCol, endRow, endCol) == TRUE
+            RETURN TRUE
+        IF solveMaze(startRow-1, startCol, endRow, endCol) == TRUE
+            RETURN TRUE
+        IF solveMaze(startRow, startCol+1, endRow, endCol) == TRUE
+            RETURN TRUE
+        IF solveMaze(startRow, startCol-1, endRow, endCol) == TRUE
+            RETURN TRUE
+
+        visited[startRow][startCol] = FALSE   // backtrack
+        RETURN FALSE
+
+    METHOD isSafe(r, c)
+        RETURN (r >= 0 AND c >= 0 AND r < rows AND c < cols 
+                AND maze[r][c] == 0 AND visited[r][c] == FALSE)
+
+CLASS MazeMain
+    METHOD main()
+        maze = [
+            [0, 1, 0, 0],
+            [0, 0, 0, 1],
+            [1, 0, 1, 0],
+            [0, 0, 0, 0]
+        ]
+
+        solver = MazeSolver(maze)
+        result = solver.solveMaze(0, 0, 3, 3)
+
+        IF result == TRUE
+            PRINT "Path Found!"
+        ELSE
+            PRINT "No Path Exists"

@@ -1,0 +1,58 @@
+CLASS Patient
+    ATTRIBUTES:
+        patientId
+        name
+        age
+        disease
+
+    CONSTRUCTOR(patientId, name, age, disease)
+        this.patientId = patientId
+        this.name = name
+        this.age = age
+        this.disease = disease
+
+CLASS PatientDatabase
+    ATTRIBUTES:
+        records   // HashMap: key = patientId, value = Patient
+
+    CONSTRUCTOR()
+        this.records = EMPTY HASHMAP
+
+    METHOD addPatient(patient)
+        records[patient.patientId] = patient
+        PRINT "Patient added: " + patient.name
+
+    METHOD getPatient(patientId)
+        IF patientId IN records
+            RETURN records[patientId]
+        ELSE
+            PRINT "Patient not found"
+            RETURN NULL
+
+    METHOD updatePatient(patientId, newDisease)
+        IF patientId IN records
+            records[patientId].disease = newDisease
+            PRINT "Patient " + patientId + " updated"
+        ELSE
+            PRINT "Patient not found"
+
+    METHOD deletePatient(patientId)
+        IF patientId IN records
+            REMOVE records[patientId]
+            PRINT "Patient " + patientId + " deleted"
+        ELSE
+            PRINT "Patient not found"
+
+CLASS PatientMain
+    METHOD main()
+        db = PatientDatabase()
+        
+        p1 = Patient("P101", "Ravi", 30, "Flu")
+        p2 = Patient("P102", "Sakshi", 25, "Diabetes")
+
+        db.addPatient(p1)
+        db.addPatient(p2)
+
+        db.getPatient("P101")
+        db.updatePatient("P102", "Recovered")
+        db.deletePatient("P101")

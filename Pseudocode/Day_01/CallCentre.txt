@@ -1,0 +1,46 @@
+CLASS Customer
+    ATTRIBUTES:
+        name
+        type   // "normal" or "emergency"
+
+    CONSTRUCTOR(name, type)
+        this.name = name
+        this.type = type
+
+CLASS CallCenterQueue
+    ATTRIBUTES:
+        normalQueue
+        emergencyQueue
+
+    CONSTRUCTOR()
+        this.normalQueue = EMPTY QUEUE
+        this.emergencyQueue = EMPTY QUEUE
+
+    METHOD addCustomer(customer)
+        IF customer.type == "emergency"
+            emergencyQueue.ENQUEUE(customer)
+        ELSE
+            normalQueue.ENQUEUE(customer)
+
+    METHOD serveCustomer()
+        IF emergencyQueue IS NOT EMPTY
+            customer = emergencyQueue.DEQUEUE()
+            PRINT "Serving emergency customer: " + customer.name
+        ELSE IF normalQueue IS NOT EMPTY
+            customer = normalQueue.DEQUEUE()
+            PRINT "Serving normal customer: " + customer.name
+        ELSE
+            PRINT "No customers waiting"
+
+CLASS CallCenterMain
+    METHOD main()
+        center = CallCenterQueue()
+
+        center.addCustomer(Customer("Alice", "normal"))
+        center.addCustomer(Customer("Bob", "emergency"))
+        center.addCustomer(Customer("Charlie", "normal"))
+
+        center.serveCustomer()
+        center.serveCustomer()
+        center.serveCustomer()
+        center.serveCustomer()

@@ -1,0 +1,30 @@
+CLASS TextEditor
+    ATTRIBUTES:
+        content
+        undoStack   // stack of previous states
+
+    CONSTRUCTOR()
+        this.content = ""
+        this.undoStack = EMPTY STACK
+
+    METHOD typeText(newText)
+        undoStack.PUSH(content)     // save current state before change
+        content = content + newText
+        PRINT "Current Content: " + content
+
+    METHOD undo()
+        IF undoStack IS NOT EMPTY
+            content = undoStack.POP()
+            PRINT "Undo performed. Current Content: " + content
+        ELSE
+            PRINT "Nothing to undo"
+
+CLASS TextEditorMain
+    METHOD main()
+        editor = TextEditor()
+
+        editor.typeText("Hello ")
+        editor.typeText("World")
+        editor.undo()
+        editor.undo()
+        editor.undo()
